@@ -27,11 +27,27 @@ async function run() {
       app.get('/', async (req, res) => {
         res.send('Welcome to artifex');
       });
+
+    //   app.patch('/', async (req, res) => {
+    //     const data = req.body;
+    //     const updateDoc = {
+    //         $set: {
+    //           userEmail: data.userEmail,
+    //         },
+    //     };
+    //     const result = await coll.updateMany({}, updateDoc, {upsert: true});
+    //     res.send(result);
+    //   });
   
       app.get('/sculptures', async (req, res) => {
           const result = await coll.find({}).toArray();
           res.send(result);
       });
+
+      app.get('/some_sculptures', async (req, res) => {
+        const result = await coll.find({}).limit(9).toArray();
+        res.send(result);
+    });
     } 
     finally {
       // await client.close();

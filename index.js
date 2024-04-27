@@ -43,6 +43,12 @@ async function run() {
             const result = await coll.find({}).limit(9).toArray();
             res.send(result);
         });
+
+        app.get('/sculptures/categories/:category', async (req, res) => {
+            const category = req.params.category;
+            const result = await coll.find({subcategory_name: category}).toArray();
+            res.send(result);
+        });
     }
     finally {
         // await client.close();

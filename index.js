@@ -19,6 +19,7 @@ const client = new MongoClient(uri, {
 
 const db = client.db("artifex");
 const coll = db.collection("sculptures");
+const collCategory = db.collection("categories");
 
 async function run() {
     try {
@@ -26,6 +27,11 @@ async function run() {
 
         app.get('/', async (req, res) => {
             res.send('Welcome to artifex');
+        });
+
+        app.get('/categories', async (req, res) => {
+            const result = await collCategory.find({}).toArray();
+            res.send(result);
         });
 
         app.get('/sculptures', async (req, res) => {

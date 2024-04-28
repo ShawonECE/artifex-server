@@ -55,6 +55,12 @@ async function run() {
             const result = await coll.find({subcategory_name: category}).toArray();
             res.send(result);
         });
+
+        app.get('/sculptures/user/:email', async (req, res) => {
+            const email = req.params.email;
+            const result = await coll.find({userEmail: email}).toArray();
+            res.send(result);
+        });
     }
     finally {
         // await client.close();

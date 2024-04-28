@@ -29,6 +29,12 @@ async function run() {
             res.send('Welcome to artifex');
         });
 
+        app.post('/', async (req, res) => {
+            const data = req.body;
+            const result = await coll.insertOne(data);
+            res.send(result);
+        });
+
         app.get('/categories', async (req, res) => {
             const result = await collCategory.find({}).toArray();
             res.send(result);

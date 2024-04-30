@@ -24,7 +24,7 @@ const collFeatured = db.collection("featured");
 
 async function run() {
     try {
-        await client.connect();
+        // await client.connect();
 
         app.get('/', async (req, res) => {
             res.send('Welcome to artifex');

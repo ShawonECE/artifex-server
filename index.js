@@ -21,6 +21,7 @@ const db = client.db("artifex");
 const coll = db.collection("sculptures");
 const collCategory = db.collection("categories");
 const collFeatured = db.collection("featured");
+const collReviews = db.collection("reviews");
 
 async function run() {
     try {
@@ -38,6 +39,11 @@ async function run() {
 
         app.get('/categories', async (req, res) => {
             const result = await collCategory.find({}).toArray();
+            res.send(result);
+        });
+
+        app.get('/reviews', async (req, res) => {
+            const result = await collReviews.find({}).toArray();
             res.send(result);
         });
 
